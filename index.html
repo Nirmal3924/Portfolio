@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Website</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .skill-bar {
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            height: 8px;
+            border-radius: 4px;
+            transition: width 2s ease;
+        }
+        
+        .counter {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .section-padding {
+            padding: 80px 0;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 600px;
+            position: relative;
+        }
+        
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .close:hover {
+            color: #000;
+        }
+        
+        @media print {
+            .no-print {
+                display: none;
+            }
+        }
+        
+        .typing-animation {
+            border-right: 3px solid #667eea;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50% { border-color: transparent; }
+            51%, 100% { border-color: #667eea; }
+        }
+    </style>
+</head>
+<body class="font-sans">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white shadow-lg z-50 no-print">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex justify-between items-center">
+                <div class="text-2xl font-bold text-gray-800">Portfolio</div>
+                <div class="hidden md:flex space-x-6">
+                    <a href="#home" class="text-gray-600 hover:text-blue-600 transition duration-300">Home</a>
+                    <a href="#services" class="text-gray-600 hover:text-blue-600 transition duration-300">Services</a>
+                    <a href="#projects" class="text-gray-600 hover:text-blue-600 transition duration-300">Projects</a>
+                    <a href="#about" class="text-gray-600 hover:text-blue-600 transition duration-300">About</a>
+                    <a href="#contact" class="text-gray-600 hover:text-blue-600 transition duration-300">Contact</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-gray-600">
+                        <i class="fas fa-hamburger text-xl"></i>
+                    </button>
+                </div>
+            </div>
+            <div id="mobile-menu" class="md:hidden hidden mt-4">
+                <a href="#home" class="block py-2 text-gray-600 hover:text-blue-600">Home</a>
+                <a href="#services" class="block py-2 text-gray-600 hover:text-blue-600">Services</a>
+                <a href="#projects" class="block py-2 text-gray-600 hover:text-blue-600">Projects</a>
+                <a href="#about" class="block py-2 text-gray-600 hover:text-blue-600">About</a>
+                <a href="#contact" class="block py-2 text-gray-600 hover:text-blue-600">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="gradient-bg text-white section-padding pt-32">
+        <div class="container mx-auto px-6">
+            <div class="text-center">
+                <h1 class="text-5xl md:text-6xl font-bold mb-4">Nirmal Kumar</h1>
+                <p class="text-xl md:text-2xl mb-8 typing-animation" id="typing-text">Software Engineer</p>
+                <p class="text-lg mb-8 max-w-2xl mx-auto">Creating beautiful, functional, and user-friendly websites and applications that make a difference in the digital world.</p>
+                <div class="space-x-4">
+                    <a href="#projects" class="bg-white text-blue-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition duration-300">View My Work</a>
+                    <a href="#contact" class="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-blue-600 transition duration-300">Get In Touch</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section-padding bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">My Services</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">I offer comprehensive web development services to help bring your ideas to life with modern technologies and best practices.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-lg shadow-lg card-hover">
+                    <div class="text-4xl text-blue-600 mb-4">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">Web Development</h3>
+                    <p class="text-gray-600 mb-4">Custom websites and web applications built with modern frameworks and responsive design principles.</p>
+                    <ul class="text-sm text-gray-500">
+                        <li>•JQuery & React</li>
+                        <li>• Node.js & Express</li>
+                        <li>• HTML5 & CSS</li>
+                        <li>• JavaScript </li>
+                    </ul>
+                </div>
+                
+                <div class="bg-white p-8 rounded-lg shadow-lg card-hover">
+                    <div class="text-4xl text-blue-600 mb-4">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">Programing Languages</h3>
+                    <p class="text-gray-600 mb-4">Native and cross-platform mobile applications for iOS and Android platforms.</p>
+                    <ul class="text-sm text-gray-500">
+                        <li>• Java</li>
+                        <li>• C++</li>
+                        <li>• Python</li>
+                        <li>• DSA & OOPs</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-white p-8 rounded-lg shadow-lg card-hover">
+                    <div class="text-4xl text-blue-600 mb-4">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">Backend Development</h3>
+                    <p class="text-gray-600 mb-4">Robust server-side solutions and database management for scalable applications.</p>
+                    <ul class="text-sm text-gray-500">
+                        <li>• MongoDB</li>
+                        <li>• MySQL</li>
+                        <li>• SQL</li>
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section-padding">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">My Projects</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Here are some of my recent projects that showcase my skills and experience in web development.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover cursor-pointer" onclick="openModal('modal1')">
+                    <div class="h-48 bg-gradient-to-r from-blue-400 to-purple-500 flex items-center justify-center">
+                        <i class="fas fa-vr-cardboard text-white text-4xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">E-Commerce with AR</h3>
+                        <p class="text-gray-600 mb-4">An e-commerce platform with AR feature to visualize 3D products in real environments.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm">React</span>
+                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-sm">Node.js & Express</span>
+                            <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded text-sm">MongoDB</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover cursor-pointer" onclick="openModal('modal3')">
+                    <div class="h-48 bg-gradient-to-r from-purple-400 to-pink-500 flex items-center justify-center">
+                        <i class="fas fa-film text-white text-4xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Ott platform</h3>
+                        <p class="text-gray-600 mb-4">A Netflix-style OTT app for streaming movies with user data management.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm">React Native</span>
+                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-sm">Socket.io</span>
+                            <span class="bg-orange-100 text-orange-800 px-2 py-1 rounded text-sm">Firebase</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover cursor-pointer" onclick="openModal('modal4')">
+                    <div class="h-48 bg-gradient-to-r from-yellow-400 to-red-500 flex items-center justify-center">
+                        <i class="fas fa-trophy text-white text-4xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Gaming Platform</h3>
+                        <p class="text-gray-600 mb-4">Multiplayer gaming platform with real-time gameplay and tournaments.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm">JavaScript</span>
+                            <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded text-sm">WebGL</span>
+                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-sm">Socket.io</span>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section-padding bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center max-w-4xl mx-auto">
+                <h2 class="text-4xl font-bold text-gray-800 mb-6">About Me</h2>
+                <p class="text-gray-600 mb-6">Hi, I’m Nirmal, currently pursuing my Master of Computer Applications (MCA). I am passionate about exploring the world of technology and enjoy turning ideas into real working projects. 
+                    My interests lie in web development, Cyber Security, and modern technologies like Augmented Reality (AR) and Artificial Intelligence (AI). 
+                    I love coding, problem-solving, and continuously improving my skills through practical projects such as <strong>NPS Vision</strong> (an AR-based e-commerce solution) and <strong>Reeceflix</strong> (a movie streaming platform). 
+                    My goal is to become a skilled software engineer and contribute to building innovative applications that solve real-world problems.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section-padding">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Get In Touch</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Ready to start your next project? Let's work together to create something amazing. I'm always excited to take on new challenges and collaborate with great people.</p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-2xl font-semibold mb-6">Contact Information</h3>
+                    
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-paper-plane text-blue-600"></i>
+                            </div>
+                            <div>
+                                <div class="font-semibold">Email</div>
+                                <div class="text-gray-600">nirmalmahto3924@gmail.com</div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-phone-volume text-blue-600"></i>
+                            </div>
+                            <div>
+                                <div class="font-semibold">Phone</div>
+                                <div class="text-gray-600">+91 7004629940</div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-globe-asia text-blue-600"></i>
+                            </div>
+                            <div>
+                                <div class="font-semibold">Location</div>
+                                <div class="text-gray-600">Ambala, Haryana, India</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex space-x-4">
+                        <a href="https://www.linkedin.com/in/nirmal-kumar-696672226/" class="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center hover:bg-blue-700 transition duration-300">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://github.com/Nirmal3924" class="w-12 h-12 bg-gray-800 text-white rounded-full flex items-center justify-center hover:bg-gray-900 transition duration-300">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://x.com/nirmal_mahto001" class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center hover:bg-gray-800 transition duration-300 font-bold text-xl">
+                            X
+                        </a>
+                        <a href="https://www.instagram.com/nirmal_mahto001/" class="w-12 h-12 bg-red-600 text-white rounded-full flex items-center justify-center hover:bg-red-700 transition duration-300">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <form id="contact-form" class="space-y-6">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="firstName" class="block text-gray-700 font-semibold mb-2">First Name</label>
+                                <input type="text" id="firstName" name="firstName" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" required>
+                            </div>
+                            <div>
+                                <label for="lastName" class="block text-gray-700 font-semibold mb-2">Last Name</label>
+                                <input type="text" id="lastName" name="lastName" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" required>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label for="email" class="block text-gray-700 font-semibold mb-2">Email</label>
+                            <input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" required>
+                        </div>
+                        
+                        <div>
+                            <label for="subject" class="block text-gray-700 font-semibold mb-2">Subject</label>
+                            <input type="text" id="subject" name="subject" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" required>
+                        </div>
+                        
+                        <div>
+                            <label for="message" class="block text-gray-700 font-semibold mb-2">Message</label>
+                            <textarea id="message" name="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2024 John Developer. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Project Modals -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal1')">&times;</span>
+            <h2 class="text-2xl font-bold mb-4">E-Commerce Platform</h2>
+            <p class="text-gray-600 mb-4">An AR-based e-commerce web app that lets users preview 3D products in real-world environments using a mobile camera.</p>
+            <h3 class="font-semibold mb-2">Key Features:</h3>
+            <ul class="list-disc list-inside text-gray-600 mb-4">
+                <li>AR product visualization using mobile camera</li>
+                <li>3D model preview of items like furniture/electronics</li>
+                <li>User-friendly and responsive web interface</li>
+                <li>Real-time product data management</li>
+                <li>Secure shopping experience with integrated backend</li>
+            </ul>
+            <p class="text-gray-600"><strong>Technologies:</strong> React, Node.js, Express, MongoDB, model-viewer</p>
+        </div>
+    </div>
+
+    <div id="modal3" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal3')">&times;</span>
+            <h2 class="text-2xl font-bold mb-4">OTT Platform</h2>
+            <p class="text-gray-600 mb-4">A responsive Netflix clone OTT platform for streaming movies with MySQL-based user data and watch history management.</p>
+            <h3 class="font-semibold mb-2">Key Features:</h3>
+            <ul class="list-disc list-inside text-gray-600 mb-4">
+                <li>Movie streaming with responsive UI</li>
+                <li>User authentication and profile management</li>
+                <li>Watch history and favorites tracking</li>
+                <li>MySQL database for storing video details and user data</li>
+                <li>Clean design inspired by Netflix</li>
+            </ul>
+            <p class="text-gray-600"><strong>Technologies:</strong> CSS, PHP , MySQL</p>
+        </div>
+    </div>
+
+    <div id="modal4" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal4')">&times;</span>
+            <h2 class="text-2xl font-bold mb-4">Gaming Platform</h2>
+            <p class="text-gray-600 mb-4">A multiplayer gaming platform featuring real-time gameplay, tournaments, leaderboards, and social features for competitive gaming enthusiasts.</p>
+            <h3 class="font-semibold mb-2">Key Features:</h3>
+            <ul class="list-disc list-inside text-gray-600 mb-4">
+                <li>Real-time multiplayer gameplay</li>
+                <li>Tournament management system</li>
+                <li>Global leaderboards and rankings</li>
+                <li>In-game chat and social features</li>
+                <li>Achievement system and rewards</li>
+            </ul>
+            <p class="text-gray-600"><strong>Technologies:</strong> JavaScript, WebGL, Socket.io, Node.js, MongoDB</p>
+        </div>
+    </div>
+
+   
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Typing animation
+        const typingTexts = ['Full Stack Developer', 'Programing Languages', 'Backend Development', 'Problem Solver'];
+        let textIndex = 0;
+        let charIndex = 0;
+        const typingElement = document.getElementById('typing-text');
+
+        function typeText() {
+            if (charIndex < typingTexts[textIndex].length) {
+                typingElement.textContent = typingTexts[textIndex].substring(0, charIndex + 1);
+                charIndex++;
+                setTimeout(typeText, 100);
+            } else {
+                setTimeout(eraseText, 2000);
+            }
+        }
+
+        function eraseText() {
+            if (charIndex > 0) {
+                typingElement.textContent = typingTexts[textIndex].substring(0, charIndex - 1);
+                charIndex--;
+                setTimeout(eraseText, 50);
+            } else {
+                textIndex = (textIndex + 1) % typingTexts.length;
+                setTimeout(typeText, 500);
+            }
+        }
+
+        typeText();
+
+        // Counter animation
+        function animateCounter(element) {
+            const target = parseInt(element.getAttribute('data-target'));
+            const increment = target / 50;
+            let current = 0;
+
+            const timer = setInterval(() => {
+                current += increment;
+                element.textContent = Math.floor(current);
+                if (current >= target) {
+                    element.textContent = target;
+                    clearInterval(timer);
+                }
+            }, 50);
+        }
+
+        // Skill bar animation
+        function animateSkillBars() {
+            const skillBars = document.querySelectorAll('.skill-bar');
+            skillBars.forEach(bar => {
+                const width = bar.getAttribute('data-width');
+                setTimeout(() => {
+                    bar.style.width = width + '%';
+                }, 500);
+            });
+        }
+
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    if (entry.target.id === 'about') {
+                        const counters = document.querySelectorAll('.counter');
+                        counters.forEach(counter => {
+                            if (counter.textContent === '0') {
+                                animateCounter(counter);
+                            }
+                        });
+                        animateSkillBars();
+                    }
+                }
+            });
+        });
+
+        observer.observe(document.getElementById('about'));
+
+        // Modal functions
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        window.addEventListener('click', function(event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+
+        // Form validation and submission
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const formValues = Object.fromEntries(formData);
+            
+            // Basic validation
+            for (let key in formValues) {
+                if (!formValues[key].trim()) {
+                    alert(`Please fill in the ${key} field.`);
+                    return;
+                }
+            }
+            
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(formValues.email)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+            
+            // Success message
+            alert('Thank you for your message! I will get back to you soon.');
+            this.reset();
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // Add scroll effect to navigation
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('shadow-xl');
+            } else {
+                nav.classList.remove('shadow-xl');
+            }
+        });
+    </script>
+</body>
+</html>
